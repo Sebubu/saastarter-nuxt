@@ -1,0 +1,50 @@
+{
+  "name": "saastarter-nuxt",
+  "version": "1.0.1-beta2",
+  "private": false,
+  "main": "modules/nuxt.js",
+  "files": [
+    "lib/**/*",
+    "modules/**/*",
+    "css/**/*"
+  ],
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "prepack": "npm run buildCss",
+    "buildCss": "postcss assets/css/base.css assets/css/style.css -d css",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "test": "jest",
+    "build:css": "npm run buildCss"
+  },
+  "dependencies": {
+    "@stripe/stripe-js": "^1.9.0",
+    "vue-loading-skeleton": "^1.1.9"
+  },
+  "devDependencies": {
+    "@braid/vue-formulate": "^2.4.3",
+    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "@nuxt/types": "^2.14.0",
+    "@nuxt/typescript-build": "^2.0.2",
+    "@nuxt/typescript-runtime": "^1.0.0",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/firebase": "^6.1.1",
+    "@nuxtjs/tailwindcss": "^2.1.0",
+    "@vue/test-utils": "^1.0.3",
+    "autoprefixer": "^9.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^26.1.0",
+    "cssnano": "^4.1.10",
+    "firebase": "^7.19.1",
+    "jest": "^26.1.0",
+    "nuxt": "^2.14.6",
+    "postcss": "^8.1.4",
+    "postcss-apply": "^0.12.0",
+    "postcss-cli": "^8.1.0",
+    "postcss-import": "^13.0.0",
+    "ts-jest": "^26.1.3",
+    "vue-click-outside": "^1.1.0",
+    "vue-jest": "^3.0.4"
+  }
+}
