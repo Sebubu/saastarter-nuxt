@@ -12,7 +12,9 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  layout: "saastarter",
+    layout(context) {
+    return context.$saastarter.layoutName;
+  },
   head() {
     const appName = this.$saastarter.appName;
     return {

@@ -3,13 +3,23 @@
     <div>
       <div class="w-full flex flex-wrap">
         <div class="w-full md:w-1/2 flex flex-col">
-          <div class="flex justify-center md:justify-start pt-12 md:pl-12">
+          <div class="pt-12 pl-12">
             <div>
-              <nuxt-link to="/" v-if="!isAuthenticated">
-                Nuxt Components
-              </nuxt-link>
-              <nuxt-link to="/dashboard" v-if="isAuthenticated">
-                Nuxt Components
+              <nuxt-link to="/">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-6 h-6 cursor:pointer fill-current hover:text-gray-800"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  />
+                </svg>
               </nuxt-link>
             </div>
           </div>
@@ -50,7 +60,6 @@
 
 <script>
 import Vue from "vue";
-
 
 export default Vue.extend({
   data: function () {

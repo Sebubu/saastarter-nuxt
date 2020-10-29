@@ -11,7 +11,7 @@ async function* walk(dir) {
 
 function addRoute(pagesDir, location) {
   let path = location.replace(pagesDir, "").replace(".vue", "");
-  if (path.endsWith('index')) {
+  if (path.endsWith("index")) {
     path = path.substring(0, path.length - 5);
   }
   const newRoute = {
@@ -20,11 +20,12 @@ function addRoute(pagesDir, location) {
     component: location
   };
   this.extendRoutes(routes => {
-    const alreadyExists = routes.filter(route => {
-      return route.name === newRoute.name;
-    }).length > 0;
+    const alreadyExists =
+      routes.filter(route => {
+        return route.name === newRoute.name;
+      }).length > 0;
     if (alreadyExists) {
-      console.log('routeAlreadyExists', alreadyExists, newRoute.name);
+      console.log("routeAlreadyExists", alreadyExists, newRoute.name);
     }
     routes.unshift(newRoute);
   });
@@ -51,36 +52,43 @@ export default async function(moduleOptions) {
   await addPages.bind(this)();
 
   // Add Stripe plugin
-  this.addPlugin(resolve(__dirname, 'stripe.plugin.client.js'));
+  this.addPlugin(resolve(__dirname, "stripe.plugin.client.js"));
 
   // Add saastarter plugin
   const options = this.options.saastarter;
   this.addPlugin({
-    src: resolve(__dirname, 'saastarter.plugin.js'),
-    fileName: 'saastarter.plugin.js',
+    src: resolve(__dirname, "saastarter.plugin.js"),
+    fileName: "saastarter.plugin.js",
     options: {
       appName: options.appName,
-      loginSuccessUrl: options.loginSuccessUrl || '/',
+      loginSuccessUrl: options.loginSuccessUrl || "/",
       stripePublishableKey: options.stripePublishableKey,
-    },
+      layoutName: options.layoutName || "saastarter"
+    }
   });
 
   // Add css
-  const addDefaultStyling = options.defaultStyling === undefined || options.defaultStyling;
+  const addDefaultStyling =
+    options.defaultStyling === undefined || options.defaultStyling;
   const isLibProject = !!options.isLibProject;
   if (isLibProject) {
     if (addDefaultStyling) {
-      this.options.css.push("css/style.css")
+      this.options.css.push("css/style.css");
     } else {
-      this.options.css.push("css/base.css")
+      this.options.css.push("css/base.css");
     }
   }
-  if (!isLibProject){
+  if (!isLibProject) {
     if (addDefaultStyling) {
-      this.options.css.push("saastarter-nuxt/css/style.css")
+      this.options.css.push("saastarter-nuxt/css/style.css");
     } else {
-      this.options.css.push("saastarter-nuxt/css/base.css")
+      this.options.css.push("saastarter-nuxt/css/base.css");
     }
   }
-  
+
+  // Add layout
+  this.options.layouts.saastarter = join(
+    __dirname,
+    "../lib/layouts/saastarter.vue"
+  );
 }

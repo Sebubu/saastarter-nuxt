@@ -18,14 +18,15 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  components: {},
+  layout(context) {
+    return context.$saastarter.layoutName;
+  },
   head() {
     const appName = this.$root.context.$saastarter.appName;
     return {
       title: "Sign Up - " + appName,
     };
   },
-  layout: "saastarter",
 });
 </script>
 
