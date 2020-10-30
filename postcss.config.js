@@ -1,74 +1,51 @@
-const purgecss = require('@fullhuman/postcss-purgecss')
-const cssnano = require('cssnano')
-const prefixer = require('postcss-prefix-selector')
+const purgecss = require("@fullhuman/postcss-purgecss");
+const cssnano = require("cssnano");
+const prefixer = require("postcss-prefix-selector");
 
+const isProd = process.env.NODE_ENV === "production";
 
-const prodPlugins = [
-  require("postcss-import"),
-  require('tailwindcss'),
-  prefixer({
-    prefix: '.saastarter', 
-    transform: function (prefix, selector, prefixedSelector) {
-      if (selector === 'body' || selector === 'html') {
-        return 'body' + prefix;
-      } else {
-        return prefixedSelector;
-      }
-    }
-  }),
-  require('autoprefixer'),
+const plugins = [
+  isProd ? require("postcss-import"): null,
+  require("tailwindcss"),
   purgecss({
+    enabled: true,
     content: [
-        'components/**/*.vue',
-        'layouts/**/*.vue',
-        'pages/**/*.vue',
-        'lib/**/*.vue',
-        'plugins/**/*.js',
-        'nuxt.config.js',
+      "components/**/*.vue",
+      "layouts/**/*.vue",
+      "pages/**/*.vue",
+      "lib/layouts/**/*.vue",
+      "lib/pages/**/*.vue",
+      "lib/components/**/*.vue",
     ],
-    safelist: [
-        'saastarter-btn-primary',
-        'saastarter-btn-secondary',
-        'saastarter-text-input',
-        'saastarter-error-message'
+    whitelist: ['body', 'html', 'nuxt-progress'],
+    styleExtensions: ['.css'],
+    extractors: [
+      {
+        extractor: content => content.match(/[A-z0-9-:\\/]+/g) || [],
+        extensions: ['html', 'vue', 'js']
+      }
     ],
-    defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
   }),
-  cssnano({
-    preset: 'default'
-  }),
-];
-
-const devPlugins = [
-  require('tailwindcss'),
   prefixer({
-    prefix: '.saastarter', 
-    transform: function (prefix, selector, prefixedSelector) {
-      if (selector === 'body' || selector === 'html') {
-        return 'body' + prefix;
+    prefix: ".saastarter",
+    transform: function(prefix, selector, prefixedSelector) {
+      if (selector === "body" || selector === "html") {
+        return "body" + prefix;
       } else {
         return prefixedSelector;
       }
     }
   }),
-  require('autoprefixer'),
+  require("autoprefixer"),
+  isProd
+    ? cssnano({
+        preset: "default"
+      })
+    : null
 ];
 
 
-const isProduction = process.env.NODE_ENV === 'production';
-const isNuxt = !!process.env.VUE_ENV;
-if (isNuxt) {
-  module.exports = {
-    plugins: [require('autoprefixer')]
-  }
-  return;
-}
-if (isProduction) {
-  module.exports = {
-    plugins: prodPlugins
-  }
-} else {
-  module.exports = {
-    plugins: devPlugins
-  }
-}
+
+module.exports = {
+  plugins: plugins
+};
