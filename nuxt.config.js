@@ -75,7 +75,7 @@ const config = {
    */
   modules: [
     "@nuxtjs/firebase", 
-    '~modules/nuxt.js'
+    '~lib/modules/nuxt.js'
   ],
   saastarter: {
     appName: 'SaaStarter',

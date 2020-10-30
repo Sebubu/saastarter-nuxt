@@ -1,17 +1,16 @@
 {
   "name": "saastarter-nuxt",
-  "version": "1.1.0-beta10",
+  "version": "1.1.0-beta13",
   "private": false,
   "main": "modules/nuxt.js",
   "files": [
-    "lib/**/*",
-    "modules/**/*"
+    "**/*"
   ],
   "scripts": {
     "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "prepack": "NODE_ENV=production npm run buildCss",
-    "buildCss": "postcss assets/css/base.css assets/css/style.css -d lib/css",
+    "build": "rm -rf dist && mkdir dist && npm run build:css && cp -r lib/* dist && cp package.json dist/",
+    "dist": "cd dist && npm publish",
+    "build:css": "postcss assets/css/base.css assets/css/style.css -d lib/css",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
     "test": "jest"

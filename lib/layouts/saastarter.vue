@@ -11,6 +11,7 @@
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
+                  style="max-width: 1.5rem; max-height: 1.5rem;"
                   class="w-6 h-6 cursor:pointer fill-current hover:text-gray-800"
                 >
                   <path
