@@ -67,7 +67,6 @@ const config = {
   buildModules: [
     "@nuxt/typescript-build",
     "@nuxtjs/dotenv",
-    "@nuxtjs/tailwindcss",
   ],
   /*
    ** Nuxt.js modules
@@ -80,8 +79,7 @@ const config = {
     appName: 'SaaStarter',
     loginSuccessUrl: '/dashboard',
     stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
-    defaultStyling: true,
-    isLibProject: true
+    defaultStyling: true
   },
   firebase: {
     config: {

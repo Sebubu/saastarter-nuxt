@@ -52,8 +52,6 @@
   </div>
 </template>
 
-<style scoped>
-</style>
 
 <script>
 import Vue from "vue";

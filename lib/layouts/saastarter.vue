@@ -32,7 +32,7 @@
         </div>
 
         <div class="w-1/2 shadow-2xl fixed right-0">
-          <img class="support-image grayscale" src="/img/mountains.jpeg" />
+          <img class="object-cover w-full h-full hidden support-image grayscale" src="/img/mountains.jpeg" />
         </div>
       </div>
     </div>
@@ -42,12 +42,19 @@
 <style scoped>
 .support-image {
   min-height: 100vh;
-  @apply object-cover w-full h-full hidden;
+
 }
 @media only screen and (min-width: 768px) {
   .support-image {
-    @apply block;
+    display: block;
   }
+}
+.grayscale {
+  filter: grayscale(50%);
+  --webkit-filter: grayscale(50%);
+  --moz-filter: grayscale(50%);
+  --o-filter: grayscale(50%);
+  --ms-filter: grayscale(50%);
 }
 .grayscale {
   filter: grayscale(50%);
@@ -62,6 +69,11 @@
 import Vue from "vue";
 
 export default Vue.extend({
+  head: {
+    bodyAttrs: {
+      class: "saastarter",
+    },
+  },
   data: function () {
     return {
       user: null,

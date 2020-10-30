@@ -17,7 +17,7 @@
   left: 50%;
   margin-top: -7px;
   margin-left: -7px;
-  @apply absolute;
+  position: absolute;
 }
 </style>
 

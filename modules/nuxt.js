@@ -70,20 +70,11 @@ export default async function(moduleOptions) {
   // Add css
   const addDefaultStyling =
     options.defaultStyling === undefined || options.defaultStyling;
-  const isLibProject = !!options.isLibProject;
-  if (isLibProject) {
-    if (addDefaultStyling) {
-      this.options.css.push("css/style.css");
-    } else {
-      this.options.css.push("css/base.css");
-    }
-  }
-  if (!isLibProject) {
-    if (addDefaultStyling) {
-      this.options.css.push("saastarter-nuxt/css/style.css");
-    } else {
-      this.options.css.push("saastarter-nuxt/css/base.css");
-    }
+  const cssDir = join(__dirname, "../lib/css/");
+  if (addDefaultStyling) {
+    this.options.css.push(cssDir + "style.css");
+  } else {
+    this.options.css.push(cssDir + "base.css");
   }
 
   // Add layout

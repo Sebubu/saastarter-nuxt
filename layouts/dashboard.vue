@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="saastarter">
     <header class="mb-10 flex flex-row justify-between container mx-auto mt-12">
       <nuxt-link to="/dashboard">
         Nuxt Components

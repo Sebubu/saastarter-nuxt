@@ -23,5 +23,9 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+
+<style scoped>
+body {
+  margin: 0;
+}
 </style>
