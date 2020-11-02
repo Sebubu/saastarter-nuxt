@@ -10,7 +10,7 @@
     "dev": "nuxt-ts",
     "build": "rm -rf dist && mkdir dist && npm run build:css && cp -r lib/* dist && cp package.json README.md dist/",
     "dist": "cd dist && npm publish",
-    "build:css": "postcss assets/css/base.css assets/css/style.css -d lib/css",
+    "build:css": "NODE_ENV=production postcss assets/css/base.css assets/css/style.css -d lib/css",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
     "test": "jest"

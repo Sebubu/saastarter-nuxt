@@ -72,7 +72,7 @@ import Vue from "vue";
 export default Vue.extend({
   head: {
     bodyAttrs: {
-      class: "saastarter",
+      class: "saas",
     },
   },
   data: function () {

@@ -27,7 +27,7 @@ const plugins = [
     ],
   }),
   prefixer({
-    prefix: ".saastarter",
+    prefix: ".saas",
     transform: function(prefix, selector, prefixedSelector) {
       if (selector === "body" || selector === "html") {
         return "body" + prefix;
